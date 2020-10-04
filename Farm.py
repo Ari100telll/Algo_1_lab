@@ -2,7 +2,7 @@ from typing import List
 import time
 
 
-class Algo_statistics:
+class AlgoStatistics:
     def __init__(self, Algo_name):
         self.name = Algo_name
         self.start_time = time.time()
@@ -10,7 +10,7 @@ class Algo_statistics:
         self.swaps = 0
 
     def get_work_time(self):
-        work_time = self.start_time - time.time()
+        work_time = time.time() - self.start_time
         return work_time
 
     def add_compares(self):
@@ -39,7 +39,7 @@ class Farm:
 
 
 def sort_farm_fan_power_wt_descending(farm_arr: List[Farm]):
-    Statistics = Algo_statistics("Bubble sort")
+    Statistics = AlgoStatistics("Bubble sort")
     for i_iterator in range(len(farm_arr) - 1, 0, -1):
         for j_iterator in range(i_iterator):
             Statistics.add_compares()
@@ -50,7 +50,7 @@ def sort_farm_fan_power_wt_descending(farm_arr: List[Farm]):
 
 
 def sort_farm_count_of_animals_ascending(farm_arr: List[Farm]):
-    Statistics = Algo_statistics("Heapsort")
+    Statistics = AlgoStatistics("Heapsort")
 
     farm_arr_size = len(farm_arr)
 
@@ -87,7 +87,6 @@ def sort_farm_count_of_animals_ascending(farm_arr: List[Farm]):
 def get_farm_arr_from_file(File_Name):
     farm_arr = []
     with open(File_Name, 'r', encoding='utf-8') as file:
-        i = 0
         for line in file:
             line = line.strip()
             arr = line.split(',')
