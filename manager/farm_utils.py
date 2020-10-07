@@ -1,41 +1,6 @@
+from model.algo_statistics import AlgoStatistics
 from typing import List
-import time
-
-
-class AlgoStatistics:
-    def __init__(self, Algo_name):
-        self.name = Algo_name
-        self.start_time = time.time()
-        self.compares = 0
-        self.swaps = 0
-
-    def get_work_time(self):
-        work_time = time.time() - self.start_time
-        return work_time
-
-    def add_compares(self):
-        self.compares += 1
-
-    def add_swaps(self):
-        self.swaps += 1
-
-    def print_statistics(self):
-        print("-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
-        print(self.name)
-        print(f"Work_time: {self.get_work_time()}")
-        print(f"Compares: {self.compares}")
-        print(f"Swaps: {self.swaps}")
-        print("-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
-
-
-class Farm:
-    def __init__(self, place: str, count_of_animals: int, fan_power_wt: float):
-        self.place = place
-        self.count_of_animals = count_of_animals
-        self.fan_power_wt = fan_power_wt
-
-    def __str__(self):
-        return self.place + " " + str(self.count_of_animals) + " " + str(self.fan_power_wt)
+from model.farm import Farm
 
 
 def sort_farm_fan_power_wt_descending(farm_arr: List[Farm]):
@@ -101,18 +66,3 @@ def get_farm_arr_from_file(File_Name):
 def print_farm_array(farm_arr: List[Farm]):
     for farm_element in farm_arr:
         print(farm_element)
-
-
-if __name__ == '__main__':
-    farms = get_farm_arr_from_file("input_data.csv")
-    print_farm_array(farms)
-
-    print("=============================================")
-
-    sort_farm_fan_power_wt_descending(farms)
-    print_farm_array(farms)
-
-    print("=============================================")
-
-    sort_farm_count_of_animals_ascending(farms)
-    print_farm_array(farms)
